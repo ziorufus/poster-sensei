@@ -495,7 +495,10 @@ def build_column1(y0):
         "Automatic subtitling keeps improving, but broadcast-ready output still "
         "needs human validation against reading speed, line length, "
         "lines-per-block, and text accuracy. Existing editors are either generic and free, or "
-        "polished and closed. SENSEI closes that gap.",
+        "polished and closed.",
+        size=9.4, color=BODY_TEXT)
+    y = paragraph(x, y, w,
+        "SENSEI closes that gap.",
         size=9.4, color=BODY_TEXT)
     y += 22
 
@@ -545,7 +548,7 @@ def build_column2(y0):
         ("editor", GREEN, "Block editor", "Edit · Add · Delete · Duplicate · Merge"),
         ("wave", OLIVE, "Timeline", "waveform, drag-and-drop timing."),
     ], cols=2, card_h=60.0)
-    y += 36
+    y += 25
 
     y = section_header(x, y, w, 5, "Compliance at a glance", OLIVE)
     # formula card
@@ -560,7 +563,7 @@ def build_column2(y0):
         ("speed", OLIVE, "Reading", "21 cps default (9 ZH, 4 JA)."),
         ("ruler", PURPLE, "Block", "max lines (d. 2) & chars per line (d. 42, 16 ZH, 13 JA)"),
         ("clock", NAVY, "Timing", "min/max on-screen duration"),
-    ], cols=3, card_h=75.0, gap=6.0)
+    ], cols=3, card_h=70.0, gap=6.0)
     y += 9
     y = paragraph(x, y, w, "All thresholds are user-editable; violations are flagged live.",
                   size=7.3, color=MUTED, italic=True)
@@ -691,7 +694,7 @@ def build_comparison_table(y0):
         "The only environment combining automatic generation, bilingual tracks and "
         "compliance-aware editing under a fully open license:",
         size=9.4, color=BODY_TEXT)
-    y += 9
+    # y += 5
 
     label_w = 225.0
     n_data = len(TABLE_COLS)
