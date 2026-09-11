@@ -392,8 +392,8 @@ def feature_card(x, y, w, h, kind, color, label, desc, desc_size=7.3):
     label_lines = wrap_text(label, w - 31, 8.6, bold=True)[:1]
     text(x + 27, y + 19.5, label_lines[0] if label_lines else label, 8.6, weight="700", color=INK)
     ty = y + 35.5
-    for line in wrap_text(desc, w - 17, desc_size)[:2]:
-        text(x + 14.5, ty, line, desc_size, color=MUTED)
+    for line in wrap_text(desc, w - 9, desc_size)[:3]:
+        text(x + 5, ty, line, desc_size, color=MUTED)
         ty += desc_size * 1.4
 
 
@@ -493,8 +493,8 @@ def build_column1(y0):
     y = section_header(x, y, w, 1, "Motivation", PURPLE)
     y = paragraph(x, y, w,
         "Automatic subtitling keeps improving, but broadcast-ready output still "
-        "needs human validation against reading speed, line length and "
-        "lines-per-block. Existing editors are either generic and free, or "
+        "needs human validation against reading speed, line length, "
+        "lines-per-block, and text accuracy. Existing editors are either generic and free, or "
         "polished and closed. SENSEI closes that gap.",
         size=9.4, color=BODY_TEXT)
     y += 22
@@ -521,7 +521,7 @@ def build_column1(y0):
         ("database", GREEN, "Management DB", "users, projects, files & permissions."),
         ("cascade", NAVY, "Subtitling engine", "the two-stage ASR–MT cascade (§6)."),
         ("loop", OLIVE, "HITL loop", "edits & compliance checks close to SRT."),
-    ], cols=2)
+    ], cols=2, card_h=60.0)
     return y
 
 
@@ -544,7 +544,7 @@ def build_column2(y0):
         ("play", NAVY, "Video preview", "playback & full-screen inspection."),
         ("editor", GREEN, "Block editor", "Edit · Add · Delete · Duplicate · Merge"),
         ("wave", OLIVE, "Timeline", "waveform, drag-and-drop timing."),
-    ], cols=2)
+    ], cols=2, card_h=60.0)
     y += 36
 
     y = section_header(x, y, w, 5, "Compliance at a glance", OLIVE)
@@ -557,10 +557,10 @@ def build_column2(y0):
          color=MUTED, anchor="middle", italic=True)
     y += card_h + 14
     y = feature_grid(x, y, w, [
-        ("speed", OLIVE, "Reading speed", "21 cps default (9 CN, 4 JA)."),
-        ("ruler", PURPLE, "Block shape", "max lines & chars per line."),
-        ("clock", NAVY, "Timing", "min/max on-screen duration."),
-    ], cols=3, card_h=58.0, gap=8.0)
+        ("speed", OLIVE, "Reading", "21 cps default (9 ZH, 4 JA)."),
+        ("ruler", PURPLE, "Block", "max lines (d. 2) & chars per line (d. 42, 16 ZH, 13 JA)"),
+        ("clock", NAVY, "Timing", "min/max on-screen duration"),
+    ], cols=3, card_h=75.0, gap=6.0)
     y += 9
     y = paragraph(x, y, w, "All thresholds are user-editable; violations are flagged live.",
                   size=7.3, color=MUTED, italic=True)
@@ -624,7 +624,7 @@ def build_column3(y0):
         return y + bh + 20
 
     y = stage_strip(y, "STAGE 1 — BASELINE",
-                     ["SB-VAD\nsegmentation", "Whisper\nlarge-v3 ASR", "MADLAD\nMT per block"], NAVY)
+                     ["SB-VAD\nsegmentation", "Whisper\nlarge-v3 ASR", "MADLAD\nMT per subtitle"], NAVY)
     y = stage_strip(y, "STAGE 2 — SENTENCE-AWARE REFINEMENT",
                      ["Aggregate\nVAD segments", "Voxtral\nASR", "Sentence\nMADLAD MT", "mwerAlign\nre-alignment"], PURPLE)
 
@@ -679,7 +679,7 @@ TABLE_ROWS = [
     ("Resizeable interface", [True, "open/close sidebar only", "sidebar only", True, True]),
     ("Multi-language", [True, False, "separate environments", False, False]),
     ("Load SRT file", [True, True, True, True, True]),
-    ("Playback of single subtitle", [True, "vertical sidebar only", False, True, "vertical sidebar only"]),
+    ("Playback of single subtitle", [True, True, False, True, "vertical sidebar only"]),
 ]
 
 
